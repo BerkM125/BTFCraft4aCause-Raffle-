@@ -4,32 +4,35 @@
     <title>Lottery Program</title>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Lato&subset=latin-ext);
-		body {
-			background-image: url("LotteryTicketBackground.jpg");
-		}
-		.rafflebutton {
-			font-family: Calibri;
-			font-size: 25px;
-			height: 50px;
-			width: 200px;
-			border-radius: 15px;
-			opacity: 1;
-		}
-		.rafflebutton:hover {
-			opacity: 0.75;
-		}
+        body {
+            background-image: url("LotteryTicketBackground.jpg");
+        }
+        
+        .rafflebutton {
+            font-family: Calibri;
+            font-size: 25px;
+            height: 50px;
+            width: 200px;
+            border-radius: 15px;
+            opacity: 1;
+        }
+        
+        .rafflebutton:hover {
+            opacity: 0.75;
+        }
+        
         .inset {
-			color: #ffffff;
+            color: #ffffff;
             display: inline-block;
             border-style: inset;
             font-family: 'Lato', sans-serif;
-            font-size: 375%;
+            font-size: 475%;
             margin-top: 5%;
-			margin-left: 5px;
+            margin-left: 5px;
             text-align: center;
             width: 200px;
-            height: 150px;
-			line-height: 30px;
+            height: 175px;
+            line-height: 25px;
         }
         
         div.header {
@@ -49,54 +52,55 @@
             font-weight: 600;
             color: rgba(255, 255, 255, 0.85);
         }
-		/* Modal Content */
-		.modal-content {
-		  background-color: #fefefe;
-		  margin: auto;
-		  padding: 20px;
-		  border: 1px solid #888;
-		  width: 80%;
-		}
-
-		/* The Close Button */
-		.close {
-		  color: #aaaaaa;
-		  float: left;
-		  font-size: 28px;
-		  font-weight: bold;
-		  height: 50px;
-		  margin-top: 0px;
-		}
-
-		.close:hover,
-		.close:focus {
-		  color: #000;
-		  text-decoration: none;
-		  cursor: pointer;
-		}
+        /* Modal Content */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaaaaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            height: 50px;
+            margin-top: 0px;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-<div id="myModal" class="modal">
-	<div class="modal-content">
-		<span class="close">×</span>
-		<p style="display:inline-block; font-size: 25px; font-family: 'Lato';">All Out! The Raffle Drawing is Finished.</p>
-	</div>
-</div>
-	<script>
-		var modal = document.getElementById("myModal");
-		var span = document.getElementsByClassName("close")[0];
-		modal.style.display = "none";
-		span.onclick = function() {
-		  modal.style.display = "none";
-		}
-		window.onclick = function(event) {
-		  if (event.target == modal) {
-			modal.style.display = "none";
-		  }
-		}
-	</script>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <p style="display:inline-block; font-size: 25px; font-family: 'Lato';">All Out! The Raffle Drawing is Finished.</p>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        modal.style.display = "none";
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
     <div>
         <div class="header">
             <span>Raffle</span>
@@ -114,82 +118,87 @@
             <div class="inset">
                 <p id="num4">00</p>
             </div>
-			<div style="text-align:center; margin-top: 20px;">
-				<button onclick="rafflePull()" class="rafflebutton">Pull Raffle!</button>
-			</div>
+            <div style="text-align:center; margin-top: 20px;">
+                <button onclick="rafflePull()" class="rafflebutton">Pull Raffle!</button>
+            </div>
         </div>
-		</div>
-		<script>
-		var size = 60;
-		var num1Recorded = new Array(size);
-		var num2Recorded = new Array(size);
-		var num3Recorded = new Array(size);
-		var num4Recorded = new Array(size);
-		var timesPulled = 0;
-		function getRndInteger(min, max) {
-			return Math.floor(Math.random() * (max - min+1) ) + min;
-		}
-		function checkRecorded (size, recorded) {
-			var num1;
-			var i1 = 0;
-			num1 = getRndInteger(1, size);			
-			for (i1 = 0; i1 < size; i1++) {
-				if (num1 === recorded[i1])
-					break;
-			}
-			if(i1 === size) 
-				return num1;
-			else
-				return 0;
-		}
-		function rafflePull () {
-			var num1, num2, num3, num4;
-			if(timesPulled < size) {
-				while(true) {
-					num1 = checkRecorded(size, num1Recorded);
-					if(num1 != 0) {
-						num1Recorded.push(num1);
-						break;
-					}
-				}
+    </div>
+    <script>
+        var size = 60;
+        var num1Recorded = new Array(size);
+        var num2Recorded = new Array(size);
+        var num3Recorded = new Array(size);
+        var num4Recorded = new Array(size);
+        var timesPulled = 0;
 
-				while(true) {
-					num2 = checkRecorded(size, num2Recorded);
-					if(num2 != 0) {
-						num2Recorded.push(num2);
-						break;
-					}
-				}
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
 
-				while(true) {
-					num3 = checkRecorded(size, num3Recorded);
-					if(num3 != 0) {
-						num3Recorded.push(num3);
-						break;
-					}
-				}
+        function checkRecorded(size, recorded) {
+            var num1;
+            var i1 = 0;
+            num1 = getRndInteger(1, size);
+            for (i1 = 0; i1 < size; i1++) {
+                if (num1 === recorded[i1])
+                    break;
+            }
+            if (i1 === size)
+                return num1;
+            else
+                return 0;
+        }
 
-				while(true) {
-					num4 = checkRecorded(size, num4Recorded);
-					if(num4 != 0) {
-						num4Recorded.push(num4);
-						break;
-					}
-				}
-					
-				
-				document.getElementById("num1").innerHTML = num1;
-				document.getElementById("num2").innerHTML = num2;
-				document.getElementById("num3").innerHTML = num3;
-				document.getElementById("num4").innerHTML = num4;
-				timesPulled++;
-			}
-			else {
-				modal.style.display = "block";
-				return;
-			}
-		}
-	</script>
+        function rafflePull() {
+            var num1, num2, num3, num4;
+            if (timesPulled < size) {
+                while (true) {
+                    while (true) {
+                        num1 = checkRecorded(size, num1Recorded);
+                        if (num1 != 0) {
+                            num1Recorded.push(num1);
+                            break;
+                        }
+                    }
+
+                    while (true) {
+                        num2 = checkRecorded(size, num2Recorded);
+                        if (num2 != 0) {
+                            num2Recorded.push(num2);
+                            break;
+                        }
+                    }
+
+                    while (true) {
+                        num3 = checkRecorded(size, num3Recorded);
+                        if (num3 != 0) {
+                            num3Recorded.push(num3);
+                            break;
+                        }
+                    }
+
+                    while (true) {
+                        num4 = checkRecorded(size, num4Recorded);
+                        if (num4 != 0) {
+                            num4Recorded.push(num4);
+                            break;
+                        }
+                    }
+                    if (!(num1 === num2 || num1 === num3 || num1 === num4 || num2 === num3 || num2 === num4 || num3 === num4))
+                        break;
+
+                }
+                document.getElementById("num1").innerHTML = num1;
+                document.getElementById("num2").innerHTML = num2;
+                document.getElementById("num3").innerHTML = num3;
+                document.getElementById("num4").innerHTML = num4;
+                timesPulled++;
+            } else {
+                modal.style.display = "block";
+                return;
+            }
+        }
+    </script>
 </body>
 
 </html>
