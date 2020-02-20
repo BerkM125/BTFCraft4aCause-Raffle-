@@ -124,7 +124,8 @@
         </div>
     </div>
     <script>
-        var size = 150;
+        var size = 160;
+		var pullLimit = 8;
         var num1Recorded = new Array(size);
         var num2Recorded = new Array(size);
         var num3Recorded = new Array(size);
@@ -152,7 +153,7 @@
 
         function rafflePull() {
             var num1, num2, num3, num4;
-            if (timesPulled < size) {
+            if (timesPulled < pullLimit*4) {
                 while (true) {
                     num1 = checkRecorded(size);
 					num2 = checkRecorded(size);
