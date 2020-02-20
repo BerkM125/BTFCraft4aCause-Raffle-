@@ -124,23 +124,25 @@
         </div>
     </div>
     <script>
-        var size = 60;
+		alert("Yeet");
+        var size = 150;
         var num1Recorded = new Array(size);
         var num2Recorded = new Array(size);
         var num3Recorded = new Array(size);
         var num4Recorded = new Array(size);
+		var numRecorded = new Array(size);
         var timesPulled = 0;
 
         function getRndInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        function checkRecorded(size, recorded) {
+        function checkRecorded(size) {
             var num1;
             var i1 = 0;
             num1 = getRndInteger(1, size);
             for (i1 = 0; i1 < size; i1++) {
-                if (num1 === recorded[i1])
+                if (num1 === numRecorded[i1])
                     break;
             }
             if (i1 === size)
@@ -153,46 +155,26 @@
             var num1, num2, num3, num4;
             if (timesPulled < size) {
                 while (true) {
-                    while (true) {
-                        num1 = checkRecorded(size, num1Recorded);
-                        if (num1 != 0) {
-                            num1Recorded.push(num1);
-                            break;
-                        }
+                    num1 = checkRecorded(size);
+					num2 = checkRecorded(size);
+					num3 = checkRecorded(size);
+					num4 = checkRecorded(size);
+                    if ((num1 != 0 && num2 != 0 && num3 != 0 && num4 != 0) && (!(num1 === num2 || num1 === num3 || num1 === num4 || num2 === num3 || num2 === num4 || num3 === num4))) {
+						numRecorded[timesPulled] = num1;
+						timesPulled++;
+						numRecorded[timesPulled] = num2;
+						timesPulled++;
+						numRecorded[timesPulled] = num3;
+						timesPulled++;
+						numRecorded[timesPulled] = num4;
+						timesPulled++;
+						break;
                     }
-
-                    while (true) {
-                        num2 = checkRecorded(size, num2Recorded);
-                        if (num2 != 0) {
-                            num2Recorded.push(num2);
-                            break;
-                        }
-                    }
-
-                    while (true) {
-                        num3 = checkRecorded(size, num3Recorded);
-                        if (num3 != 0) {
-                            num3Recorded.push(num3);
-                            break;
-                        }
-                    }
-
-                    while (true) {
-                        num4 = checkRecorded(size, num4Recorded);
-                        if (num4 != 0) {
-                            num4Recorded.push(num4);
-                            break;
-                        }
-                    }
-                    if (!(num1 === num2 || num1 === num3 || num1 === num4 || num2 === num3 || num2 === num4 || num3 === num4))
-                        break;
-
                 }
                 document.getElementById("num1").innerHTML = num1;
                 document.getElementById("num2").innerHTML = num2;
                 document.getElementById("num3").innerHTML = num3;
                 document.getElementById("num4").innerHTML = num4;
-                timesPulled++;
             } else {
                 modal.style.display = "block";
                 return;
