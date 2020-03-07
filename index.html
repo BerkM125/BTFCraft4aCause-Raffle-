@@ -192,7 +192,7 @@
 					for(var i = 0; i < 4; i++) {
 						while(true) {
 							tmp = checkRecorded2(size);
-							if(list[tmp] != 1000 && list[tmp] != 'undefined') {
+							if(list[tmp] != 1000 && list[tmp] != null && tmp < size) {
 								numbers[i] = list[tmp];
 								list[tmp] = 1000;
 								break;
